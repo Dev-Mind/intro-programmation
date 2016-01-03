@@ -1,0 +1,408 @@
+<html>
+
+<!-- Dans cette zone head (entête) nous définissions des informations qui permettent d'identifier la page -->
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Le titre de notre page -->
+    <title>Calcul de PGCD</title>
+
+    <!-- Pour que notre site soit joli nous utilisons un fichier CSS distant -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="test.js"></script>
+</head>
+
+<!-- C'est dans cette zone body que nous allons définir le corps de la page -->
+<body>
+
+<div class="container">
+    <!-- Insertion d'une image -->
+    <div class="row hidden-xs">
+        <img class="col-xs-6 col-xs-offset-3" src="assets/img/logo_1500.png" class="img-responsive">
+    </div>
+    <div class="row visible-xs">
+        <img src="assets/img/logo_1500.png" class="img-responsive">
+    </div>
+
+    <!-- Un paragraphe se définit entre les balises <p> et </p> -->
+    <p>Bienvenue sur cette d&eacute;monstration qui va vous permettre de construire votre premier programme qui va
+        calculer le PGCD entre 2 nombre</p>
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#pgcd" aria-controls="home" role="tab"
+                                                  data-toggle="tab">PGCD</a></li>
+        <li role="presentation"><a href="#algorithme" aria-controls="profile" role="tab"
+                                   data-toggle="tab">Algorithme</a></li>
+        <li role="presentation"><a href="#code" aria-controls="messages" role="tab" data-toggle="tab">Code</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="pgcd">
+            <h1>Rappel sur le PGCD</h1>
+
+            <p>Pour les personnes ayant oubli&eacute; leurs cours de math&eacute;matiques <i
+                    class="glyphicon glyphicon-education"></i>, le PGCD d&eacute;signe le <i>plus grand diviseur
+                commun</i> entre 2 nombres. Il existe plusieurs m&eacute;thodes pour calculer ce PGCD. Nous allons nous
+                attarder sur la m&eacute;thode Euclidienne</p>
+
+            <p>&nbsp;</p>
+
+            <div class="jumbotron" style="padding: 1em 2em">
+                <h3>Un peu d&apos;histoire</h3>
+                <p>
+                <div class="row">
+                    <div class="col-xs-1">
+                        <img src="http://journalpelbraysien.free.fr/IMG/jpg/geodesie_archimede.jpg"
+                             class="img-circle img-responsive">
+                    </div>
+                    <div class="col-xs-11" style="font-size: 15px">
+                        Euclide est un math&eacute;maticien de la Gr&egrave;ce antique. Il a &eacute;crit un des textes
+                        fondateurs des math&eacute;matiques qui se nommait <i>&quot;&eacute;l&eacute;ments de math&eacute;matiques&quot;</i>.
+                        Par contre personne n&apos;est vraiment capable de savoir quand Euclide vivait. On estime que c&apos;&eacute;tait &agrave;
+                        peu pr&egrave;s en 300 avant notre &egrave;re.
+                    </div>
+                </div>
+                </p>
+                <p><a class="btn btn-primary" href="https://fr.wikipedia.org/wiki/Euclide" role="button">En savoir
+                    plus...</a></p>
+            </div>
+
+            <p>Les math&eacute;matiques sont souvent pr&eacute;sent&eacute;es de mani&egrave;re abstraite sans les
+                rapprocher &agrave; des cas concrets. Pourtant les math&eacute;matiques sont tr&egrave;s souvent des
+                outils qui permettent d&apos;aider dans les t&acirc;ches de la vie courante.
+                Repla&ccedil;ons nous dans le contexte de l&apos;&eacute;poque (en roman&ccedil;ant un petit
+                peu)... </p>
+
+            <hr>
+            <p>
+                <i>P&eacute;tros est un b&acirc;tisseur grec et un de ses riches clients vient le voir pour paver sa
+                    cours int&eacute;rieure qui mesure 21 m&egrave;tres par 15. Sa seule exigence est d&apos;avoir dans
+                    sa cours des pav&eacute;s de forme carr&eacute;.
+                    P&eacute;tros doit donc calculer le plus grand diviseur commun entre ces deux longueurs. Il va donc
+                    voir Euclide car il ne sait pas du tout comment faire.</i>
+            </p>
+
+            <p><b>P&eacute;tros</b> : Bonjour Euclide peux tu m&apos;aider pour que je puisse r&eacute;pondre au probl&egrave;me
+                de mon client ? </p>
+
+            <p><b>Euclide</b> : Bien s&ucirc;r P&eacute;tros. Tu as besoin de trouver le plus petit diviseur commun
+                entre 21 et 15 et pour cel&agrave; <i>&quot;prends ta calculatrice et
+                    fait la division enti&egrave;re en redivisant &agrave; chaque fois le diviseur par le reste jusqu&apos;&agrave;
+                    trouver un reste nul&quot;. Il aurait pu tourner &ccedil;a autrement </i>
+            </p>
+
+            <p><b>P&eacute;tros</b> : Euclide je suis ba&acirc;tisseur et nous sommes en 300 avant JC. Je ne sais pas ce
+                qu&apos;est une calculatrice...</p>
+
+
+            <p><b>Euclide</b> : Ah oui c&apos;est vrai. Je te propose une autre m&eacute;thode. Trace un rectangle de 21
+                par 15. Nous allons diviser ce rectangle.</p>
+            <p class="text-center">
+                <svg>
+                    <rect width="210" height="150" style="fill:#ffffff;stroke:#000000"/>
+                </svg>
+            </p>
+            <p><b>Euclide</b> : Tu vas construire un carr&eacute; dans ce rectangle. Evidemment il sera de la dimension
+                de la largeur du rectangle (donc 15 m&egrave;tres). Tu ne peux en mettre qu&apos;un seul</p>
+            <p class="text-center">
+                <svg>
+                    <g>
+                        <rect width="210" height="150" style="fill:#ffffff;stroke:#000000"/>
+                        <rect width="150" height="150" style="fill:#BBDEFB;stroke:#000000"/>
+                    </g>
+                </svg>
+            </p>
+            <p><b>Euclide</b> : Le but est maintenant d&apos;essayer de red&eacute;couper l&apos;espace restant en
+                appliquant la m&ecirc;me m&eacute;thode. Cet espace est maintenant un rectangle de 15 par 6. Nous
+                pouvons cette fois mettre 2 carr&eacute;s de 6 par 6 dans cet espace</p>
+            <p class="text-center">
+                <svg>
+                    <g>
+                        <rect width="210" height="150" style="fill:#ffffff;stroke:#000000"/>
+                        <rect width="150" height="150" style="fill:#BBDEFB;stroke:#000000"/>
+                        <rect x="150" width="60" height="60" style="fill:#90CAF9;stroke:#000000"/>
+                        <rect x="150" y="60" width="60" height="60" style="fill:#90CAF9;stroke:#000000"/>
+                    </g>
+                </svg>
+            </p>
+            <p><b>Euclide</b> : Il nous reste maintenant une zone rectangulaire de 6 m&egrave;tres par 3 m&egrave;tres.
+                Appliquons &agrave; nouveau notre m&eacute;thode</p>
+            <p class="text-center">
+                <svg>
+                    <g>
+                        <rect width="210" height="150" style="fill:#ffffff;stroke:#000000"/>
+                        <rect width="150" height="150" style="fill:#BBDEFB;stroke:#000000"/>
+                        <rect x="150" width="60" height="60" style="fill:#90CAF9;stroke:#000000"/>
+                        <rect x="150" y="60" width="60" height="60" style="fill:#90CAF9;stroke:#000000"/>
+                        <rect x="150" y="120" width="30" height="30" style="fill:#64B5F6;stroke:#000000"/>
+                        <rect x="180" y="120" width="30" height="30" style="fill:#64B5F6;stroke:#000000"/>
+                    </g>
+                </svg>
+            </p>
+            <p><b>Euclide</b> : Au final le carr&eacute; le plus petit est de 3 m&egrave;tres par 3 m&egrave;tres et
+                nous ne pouvons pas rediviser la surface. Nous avons maintenant notre plus petit diviseur commun entre
+                21 et 15 et c&apos;est le nombre 3</p>
+
+            <p><b>P&eacute;tros</b> : Merci Euclide je saurai maintenant me d&eacute;brouiller tout seul et je sais que
+                je peux poser des carreaux de 30cm par 30cm et que j&apos;en ai besoin de 3500 (5 x 10 x 7 x 10)</p>
+
+            <p>&nbsp;</p>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="algorithme">
+            <h1>Cr&eacute;er un algorithme</h1>
+
+            <p>
+                Nous venons de voir une m&eacute;thode assez simple pour calculer le PGCD de 2 nombres entiers.
+                Regardons
+                maintenant comment transformer cette m&eacute;thode incr&eacute;mentale en algorithme.
+            </p>
+
+            <p>&nbsp;</p>
+
+            <div class="jumbotron" style="padding: 1em 2em">
+                <h3>Algorithme</h3>
+                <p style="font-size: 15px">
+                    Les algorithmes n&apos;ont pas &eacute;t&eacute; invent&eacute;s par les informaticiens mais th&eacute;oris&eacute;s
+                    par un grand math&eacute;maticien persan Al Khwarizmi (vers l&apos;an 820). C&apos;est ce m&ecirc;me
+                    mat&eacute;maticien
+                    qui est &agrave; l&apos;origine de l&apos;utilisation des nombres arables dans le Moyen Orient et en
+                    Europe.
+                    Un algorithme repr&eacute;sente une suite d&apos;op&eacute;rations ou d&apos;instructions finies qui
+                    permettent d&apos;arriver &agrave; un r&eacute;sultat. Un algorithme peut ensuite &ecirc;tre impl&eacute;ment&eacute;
+                    (r&eacute;&eacute;crit en utilisant un langage de programmation) pour &ecirc;tre ex&eacute;cut&eacute;
+                    par un ordinateur
+                </p>
+                <p><a class="btn btn-primary" href="https://fr.wikipedia.org/wiki/Algorithme" role="button">En savoir
+                    plus...</a></p>
+            </div>
+
+            <p>Essayons maintenant de transformer la m&eacute;thode euclidienne pour calculer un PGCD en
+                algorithme. </p>
+
+            <h2>En fran&ccedil;ais</h2>
+
+            <p>Nous avons deux nombres entiers au d&eacute;part qui doivent &ecirc;tre sup&eacute;rieur &agrave; 0. On
+                les
+                nommera <b>a</b> et <b>b</b> (a &eacute;tant le plus grand des deux)</p>
+
+            <p>Divisons <b>a</b> par <b>b</b> et ne gardons que le reste <b>r</b> = <b>a</b> - &lfloor; <b>a</b> /
+                <b>b</b> &rfloor;</p>
+
+            <p>Recomman&ccedil;ons cette op&eacute;ration en attribuant <b>b</b> dans <b>a</b> et <b>r</b> dans <b>b</b>
+                jusqu&agrave; obtenir un reste &eacute;gal &agrave; 0. La dernière valeur de r non nulle est le PGCD</p>
+
+
+            <h2>Organigramme</h2>
+
+            <p>Les algorithmes sont parfois repr&eacute;sent&eacute;s sous forme de diagramme. On parle d&apos;organigramme
+                ou de diagramme de flux. Les symboles que vous pouvez utiliser sont assez simple et limit&eacute;s.
+                Voici
+                les principaux</p>
+
+            <hr>
+            <div class="row">
+                <div class="col-xs-1">
+                    <img src="assets/img/Flowchart_Terminal.svg" class=" img-responsive">
+                </div>
+                <div class="col-xs-11">
+                    Les rectangles arrondis permettent de d&eacute;finir le d&eacute;but et la fin d&apos;un algorithme
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                    <img src="assets/img/Flowchart_Line.svg" class=" img-responsive">
+                </div>
+                <div class="col-xs-11">
+                    Une fl&ecirc;che d&eacute;finit une transition entre deux &eacute;tapes de notre algorithme
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                    <img src="assets/img/Flowchart_Process.svg" class=" img-responsive">
+                </div>
+                <div class="col-xs-11">
+                    Un rectangle permet de sp&eacute;cifier un traitement particulier
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                    <img src="assets/img/Flowchart_Decision.svg" class=" img-responsive">
+                </div>
+                <div class="col-xs-11">
+                    Dans un algorithme nous avons parfois des conditions qui vont amener &agrave; prendre des chemins
+                    diff&eacute;rents
+                    en fonction des d&eacute;cisions ou des r&eacute;sultats
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                    <img src="assets/img/Flowchart_IO.svg" class=" img-responsive">
+                </div>
+                <div class="col-xs-11">
+                    Ce bloc permet de d&eacute;finir les entr&eacute;es et les sorties. Par exemple l&apos;utilisateur
+                    saisit une donn&eacute;e, nous affichons une valeur....
+                </div>
+            </div>
+            <hr>
+
+            <p>Si on essaye d&apos;utiliser ces annotations pour d&eacute;finir notre algorithme nous aurions par
+                exemple</p>
+
+            <img src="assets/img/algorithm.png" class="img-responsive">
+
+            <p>Maintenant que vous avez lu ce chapitre je peux vous dire que ces notations ne sont jamais utilisées par
+                les
+                développeurs. Elles sont par contre très utiles au départ pour vous aider à structure un programme.</p>
+            <p>&nbsp;</p>
+
+            <h2>Pseudo code</h2>
+
+            <p>La dernière façon de décrire nore algorithme est d'utiliser un langage proche de ce que peut comprendre
+                une
+                machine mais ne faisant pas de référence particulière à un langage de programmation. Les instructions
+                sont
+                assez limitées. Nous pouvons :</p>
+
+            <ul>
+                <li>
+                    déclarer et affecter des variables
+                    <pre><b>variable</b> a = 10</pre>
+                </li>
+                <li>
+                    écrire des conditions
+                <pre><b>Si</b> variable a = 10 <b>Alors</b>
+ ...
+<b>Sinon</b>
+ ...
+<b>Fin Si</b></pre>
+                </li>
+                <li>
+                    écrire des boucles
+                <pre><b>Tan que</b> condition <b>Faire</b>
+ ...
+<b>Fin tant que</b>
+</pre>
+                </li>
+                <li>
+                    écrire des fonctions pour regrouper le code
+                <pre><b>Fonction</b> name ( argument1, argument2 ...)
+ ...
+<b>Fin fonction</b>
+</pre>
+                </li>
+                <li>...</li>
+            </ul>
+
+            <p>Les langages de programmation permettent de faire différente opérations sur les nombres manipulés</p>
+            <ul>
+                <li><b>+</b> : addition</li>
+                <li><b>-</b> : sustraction</li>
+                <li><b>*</b> : multiplication</li>
+                <li><b>/</b> : division</li>
+                <li><b>%</b> : modulo (reste de la division entière)</li>
+                <li>...</li>
+            </ul>
+
+            <p>Les opérateurs peuvent nous aider dans les comparaisons</p>
+            <ul>
+                <li><b>==</b> : tester égalité</li>
+                <li><b>!=</b> : tester si différent</li>
+                <li><b>&&</b> : et logique</li>
+                <li><b>||</b> : ou logique</li>
+            </ul>
+
+<pre>
+    <b>Fonction</b> pgcd(a, b)
+      <b>Si</b> B == 0 OU SI A == 0 <b>Alors</b>
+        <b>retourner</b> 0
+      <b>Fin si</b>
+
+      <b>Tant que</b> a * b != 0 <b>Faire</b>
+        <b>variable</b> r = a % b
+
+        <b>Si</b> r !=0 <b>Alors</b>
+          a = b
+          b = r
+        <b>Fin Si</b>
+
+      <b>Fin tant que</b>
+
+      <b>retourner</b> r
+    <b>Fin Fonction</b>
+</pre>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="code">
+            <h1>A vous de coder</h1>
+
+            <p>Il ne reste plus qu'à implémenter cet algorithme pour expliquer à la machine comment calculer un PGCD. Il
+                existe de nombreux langages de programmation et nous allons dans notre exemple utilisé le langage
+                Javascript </p>
+
+            <p>Voici les correspondances entre le pseudo code et le code Javascript</p>
+            <div class="row">
+                <div class="col-xs-2">déclarer et affecter des variables</div>
+                <div class="col-xs-5">
+                    <pre><b>variable</b> a = 10</pre>
+                </div>
+                <div class="col-xs-5">
+                    <pre><b>var</b> a = 10</pre>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">écrire des conditions</div>
+                <div class="col-xs-5"><pre><b>Si</b> variable a = 10 <b>Alors</b>
+...
+<b>Sinon</b>
+...
+<b>Fin Si</b></pre>
+                </div>
+                <div class="col-xs-5"><pre><b>if</b>(a === 10) {
+...
+<b>} else {</b>
+...
+<b>}</b></pre></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">écrire des boucles</div>
+                <div class="col-xs-5"><pre><b>Tant que</b> condition <b>Faire</b>
+ ...
+<b>Fin tant que</b>
+</pre>
+                </div>
+                <div class="col-xs-5"><pre><b>while</b>(condition){
+ ...
+<b>}</b>
+</pre>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-2">écrire des fonctions pour regrouper le code</div>
+                <div class="col-xs-5"><pre><b>Fonction</b> name ( argument1, argument2 ...)
+ ...
+<b>Fin fonction</b>
+</pre>
+                </div>
+                <div class="col-xs-5"><pre><b>function</b> name ( argument1, argument2) {
+ ...
+}
+</pre>
+                </div>
+            </div>
+
+
+            <textarea class="form-control" id="myscript"></textarea>
+            <button type="button" onclick="mytest()">test</button>
+        </div>
+    </div>
+</div>
+</div>
+<div id="elementToRefresh"></div>
+
+</body>
+
+</html>
