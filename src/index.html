@@ -12,7 +12,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="test.js"></script>
+    <script src="https://cdn.jsdelivr.net/ace/1.2.3/min/ace.js"></script>
+    <script src="pgcd.js"></script>
+
+    <style type="text/css" media="screen">
+        #editor {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
 </head>
 
 <!-- C'est dans cette zone body que nous allons définir le corps de la page -->
@@ -91,11 +99,11 @@
             <p><b>Euclide</b> : Bien s&ucirc;r P&eacute;tros. Tu as besoin de trouver le plus petit diviseur commun
                 entre 21 et 15 et pour cel&agrave; <i>&quot;prends ta calculatrice et
                     fait la division enti&egrave;re en redivisant &agrave; chaque fois le diviseur par le reste jusqu&apos;&agrave;
-                    trouver un reste nul&quot;. Il aurait pu tourner &ccedil;a autrement </i>
+                    trouver un reste nul&quot;.</i>
             </p>
 
-            <p><b>P&eacute;tros</b> : Euclide je suis ba&acirc;tisseur et nous sommes en 300 avant JC. Je ne sais pas ce
-                qu&apos;est une calculatrice...</p>
+            <p><b>P&eacute;tros</b> : Euclide je suis b&acirc;tisseur et nous sommes en 300 avant JC. Je ne sais pas ce
+                que c&apos;est une calculatrice...</p>
 
 
             <p><b>Euclide</b> : Ah oui c&apos;est vrai. Je te propose une autre m&eacute;thode. Trace un rectangle de 21
@@ -105,7 +113,7 @@
                     <rect width="210" height="150" style="fill:#ffffff;stroke:#000000"/>
                 </svg>
             </p>
-            <p><b>Euclide</b> : Tu vas construire un carr&eacute; dans ce rectangle. Evidemment il sera de la dimension
+            <p><b>Euclide</b> : Tu vas construire un carr&eacute; dans ce rectangle. Il doit être de la dimension
                 de la largeur du rectangle (donc 15 m&egrave;tres). Tu ne peux en mettre qu&apos;un seul</p>
             <p class="text-center">
                 <svg>
@@ -116,7 +124,8 @@
                 </svg>
             </p>
             <p><b>Euclide</b> : Le but est maintenant d&apos;essayer de red&eacute;couper l&apos;espace restant en
-                appliquant la m&ecirc;me m&eacute;thode. Cet espace est maintenant un rectangle de 15 par 6. Nous
+                appliquant la m&ecirc;me m&eacute;thode. Cet espace est maintenant un rectangle de 15 par 6 (6=21-15).
+                Nous
                 pouvons cette fois mettre 2 carr&eacute;s de 6 par 6 dans cet espace</p>
             <p class="text-center">
                 <svg>
@@ -168,8 +177,8 @@
                 <p style="font-size: 15px">
                     Les algorithmes n&apos;ont pas &eacute;t&eacute; invent&eacute;s par les informaticiens mais th&eacute;oris&eacute;s
                     par un grand math&eacute;maticien persan Al Khwarizmi (vers l&apos;an 820). C&apos;est ce m&ecirc;me
-                    mat&eacute;maticien
-                    qui est &agrave; l&apos;origine de l&apos;utilisation des nombres arables dans le Moyen Orient et en
+                    math&eacute;maticien
+                    qui est &agrave; l&apos;origine de l&apos;utilisation des nombres arabes dans le Moyen Orient et en
                     Europe.
                     Un algorithme repr&eacute;sente une suite d&apos;op&eacute;rations ou d&apos;instructions finies qui
                     permettent d&apos;arriver &agrave; un r&eacute;sultat. Un algorithme peut ensuite &ecirc;tre impl&eacute;ment&eacute;
@@ -185,7 +194,7 @@
 
             <h2>En fran&ccedil;ais</h2>
 
-            <p>Nous avons deux nombres entiers au d&eacute;part qui doivent &ecirc;tre sup&eacute;rieur &agrave; 0. On
+            <p>Nous avons deux nombres entiers au d&eacute;part qui doivent &ecirc;tre sup&eacute;rieurs &agrave; 0. On
                 les
                 nommera <b>a</b> et <b>b</b> (a &eacute;tant le plus grand des deux)</p>
 
@@ -195,6 +204,14 @@
             <p>Recomman&ccedil;ons cette op&eacute;ration en attribuant <b>b</b> dans <b>a</b> et <b>r</b> dans <b>b</b>
                 jusqu&agrave; obtenir un reste &eacute;gal &agrave; 0. La dernière valeur de r non nulle est le PGCD</p>
 
+            <p>
+                Si nous revenons à notre exemple a=21 et b=15
+            <ol>
+                <li>Etape 1 : 21/15 = 1 le reste est 6</li>
+                <li>Etape 2 : a=15 et b=6 et 15/6 = 2 le reste est 3</li>
+                <li>Etape 3 : a=6 et b=3 et 6/3 = 2 le reste est 0, le PGCD est donc 3</li>
+            </ol>
+            </p>
 
             <h2>Organigramme</h2>
 
@@ -300,7 +317,7 @@
             <p>Les langages de programmation permettent de faire différente opérations sur les nombres manipulés</p>
             <ul>
                 <li><b>+</b> : addition</li>
-                <li><b>-</b> : sustraction</li>
+                <li><b>-</b> : soustraction</li>
                 <li><b>*</b> : multiplication</li>
                 <li><b>/</b> : division</li>
                 <li><b>%</b> : modulo (reste de la division entière)</li>
@@ -331,7 +348,7 @@
 
       <b>Fin tant que</b>
 
-      <b>retourner</b> r
+      <b>retourner</b> b
     <b>Fin Fonction</b>
 </pre>
         </div>
@@ -364,7 +381,8 @@
 ...
 <b>} else {</b>
 ...
-<b>}</b></pre></div>
+<b>}</b></pre>
+                </div>
             </div>
             <div class="row">
                 <div class="col-xs-2">écrire des boucles</div>
@@ -394,15 +412,74 @@
                 </div>
             </div>
 
+            <p>Le but maintenant va être de calculer le plus grand diviseur commun entre les nombres que vous saisissez
+                dans les champs suivants</p>
+            <div class="container">
+                <div class="col-xs-1">
+                    A
+                </div>
+                <div class="col-xs-5">
+                    <input type="text" value="21" name="a" id="a" class="form-control">
+                </div>
+                <div class="col-xs-1">
+                    B
+                </div>
+                <div class="col-xs-5">
+                    <input type="text" value="15" name="b" id="b" class="form-control">
+                </div>
+            </div>
+            <p>&nbsp;</p>
 
-            <textarea class="form-control" id="myscript"></textarea>
-            <button type="button" onclick="mytest()">test</button>
+            <p>Pour celà vous allez devoir écrire le programme ci dessous pour calculer le PGCD. Pour rappel voici l'organigramme.</p>
+            <img src="assets/img/algorithm.png" class="img-responsive">
+
+
+
+            <div class="btn-group" style="float: right;padding-bottom: 4px">
+                <button type="button" class="btn btn-default" onclick="savePgcd()"><i
+                        class="glyphicon glyphicon glyphicon-save"></i>&nbsp;Sauvegarder
+                </button>
+                <button type="button" class="btn btn-default" onclick="openPgcd()"><i
+                        class="glyphicon glyphicon glyphicon-open"></i>&nbsp;Restaurer
+                </button>
+                <button type="button" class="btn btn-default" onclick="restartPgcd()"><i
+                        class="glyphicon glyphicon glyphicon-repeat"></i>&nbsp;Recommencer
+                </button>
+            </div>
+
+            <div class="row" style="height: 450px;">
+                <div id="editor"></div>
+            </div>
+
+            <div class="container">
+                <div class="col-xs-3">
+                    <button type="button" onclick="compute()" class="btn btn-primary">Lancez le calcul</button>
+                </div>
+                <div class="col-xs-5">
+                    <input type="text" value="0" id="result" class="form-control" readonly>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" onclick="verifyPgcd()" class="btn btn-primary">Vérifier</button>
+                </div>
+
+            </div>
+            <p>&nbsp;</p>
+            <div id="pgcd-feedback" style="visibility: hidden"></div>
+
         </div>
     </div>
 </div>
-</div>
 <div id="elementToRefresh"></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+
+    openPgcd();
+</script>
 </body>
 
 </html>
