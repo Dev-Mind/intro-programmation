@@ -43,12 +43,12 @@ console.log(b+'' , compute())
   if(b+'' === compute()){
     document.getElementById("pgcd-feedback").className = 'alert alert-info';
     document.getElementById("pgcd-feedback").style.visibility = 'visible';
-    document.getElementById("pgcd-feedback").innerHTML = 'Super tout à l\'air de fonctionner...';
+    document.getElementById("pgcd-feedback").innerHTML = 'Super tout fonctionne...';
   }
   else{
     document.getElementById("pgcd-feedback").className = 'alert alert-danger';
     document.getElementById("pgcd-feedback").style.visibility = 'visible';
-    document.getElementById("pgcd-feedback").innerHTML = 'Ton programme pour calculer le PGCD a un petit problème...';
+    document.getElementById("pgcd-feedback").innerHTML = 'Oups ton programme pour calculer le PGCD ne fonctionne pas...';
   }
 }
 
