@@ -9,6 +9,11 @@ function savePgcd(){
   localStorage.setItem('pgcd-script', editor.getValue());
 }
 
+function changeFontSize(size){
+  editor.setOptions({
+    fontSize: size + 'pt'
+  });
+}
 function openPgcd(){
   if(localStorage.getItem('pgcd-script')){
     editor.setValue(localStorage.getItem('pgcd-script'));

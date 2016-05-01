@@ -1,7 +1,8 @@
 <html>
 
-<!-- Dans cette zone head (entête) nous définissions des informations qui permettent d'identifier la page -->
+<!-- Dans cette zone head (ent&ecirc;te) nous définissions des informations qui permettent d'identifier la page -->
 <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Le titre de notre page -->
@@ -96,7 +97,7 @@
             <p><b>P&eacute;tros</b> : Bonjour Euclide peux tu m&apos;aider pour que je puisse r&eacute;pondre au probl&egrave;me
                 de mon client ? </p>
 
-            <p><b>Euclide</b> : Bien s&ucirc;r P&eacute;tros. Tu as besoin de trouver le plus petit diviseur commun
+            <p><b>Euclide</b> : Bien s&ucirc;r P&eacute;tros. Tu as besoin de trouver le plus grand diviseur commun
                 entre 21 et 15 et pour cel&agrave; <i>&quot;prends ta calculatrice et
                     fait la division enti&egrave;re en redivisant &agrave; chaque fois le diviseur par le reste jusqu&apos;&agrave;
                     trouver un reste nul&quot;.</i>
@@ -113,7 +114,7 @@
                     <rect width="210" height="150" style="fill:#ffffff;stroke:#000000"/>
                 </svg>
             </p>
-            <p><b>Euclide</b> : Tu vas construire un carr&eacute; dans ce rectangle. Il doit être de la dimension
+            <p><b>Euclide</b> : Tu vas construire un carr&eacute; dans ce rectangle. Il doit &ecirc;tre de la dimension
                 de la largeur du rectangle (donc 15 m&egrave;tres). Tu ne peux en mettre qu&apos;un seul</p>
             <p class="text-center">
                 <svg>
@@ -205,7 +206,7 @@
                 jusqu&agrave; obtenir un reste &eacute;gal &agrave; 0. La derni&egrave;re valeur de r non nulle est le PGCD</p>
 
             <p>
-                Si nous revenons à notre exemple a=21 et b=15
+                Si nous revenons &agrave; notre exemple a=21 et b=15
             <ol>
                 <li>Etape 1 : 21/15 = 1 le reste est 6</li>
                 <li>Etape 2 : a=15 et b=6 et 15/6 = 2 le reste est 3</li>
@@ -273,14 +274,14 @@
 
             <p>Maintenant que vous avez lu ce chapitre je peux vous dire que ces notations ne sont jamais utilis&eacute;es par
                 les
-                d&eacute;veloppeurs. Elles sont par contre tr&egrave;s utiles au d&eacute;part pour vous aider à structure un programme.</p>
+                d&eacute;veloppeurs. Elles sont par contre tr&egrave;s utiles au d&eacute;part pour vous aider &agrave; structure un programme.</p>
             <p>&nbsp;</p>
 
             <h2>Pseudo code</h2>
 
             <p>La derni&egrave;re façon de d&eacute;crire nore algorithme est d'utiliser un langage proche de ce que peut comprendre
                 une
-                machine mais ne faisant pas de r&eacute;f&eacute;rence particuli&egrave;re à un langage de programmation. Les instructions
+                machine mais ne faisant pas de r&eacute;f&eacute;rence particuli&egrave;re &agrave; un langage de programmation. Les instructions
                 sont
                 assez limit&eacute;es. Nous pouvons :</p>
 
@@ -355,7 +356,7 @@
         <div role="tabpanel" class="tab-pane fade" id="code">
             <h1>A vous de coder</h1>
 
-            <p>Il ne reste plus qu'à impl&eacute;menter cet algorithme pour expliquer à la machine comment calculer un PGCD. Il
+            <p>Il ne reste plus qu'&agrave; impl&eacute;menter cet algorithme pour expliquer &agrave; la machine comment calculer un PGCD. Il
                 existe de nombreux langages de programmation et nous allons dans notre exemple utilis&eacute; le langage
                 Javascript </p>
 
@@ -413,7 +414,7 @@
                 </div>
             </div>
 
-            <p>Le but maintenant va être de calculer le plus grand diviseur commun entre les nombres que vous saisissez
+            <p>Le but maintenant va &ecirc;tre de calculer le plus grand diviseur commun entre les nombres que vous saisissez
                 dans les champs suivants</p>
             <div class="container">
                 <div class="col-xs-1">
@@ -431,7 +432,7 @@
             </div>
             <p>&nbsp;</p>
 
-            <p>Pour celà vous allez devoir &eacute;crire le programme ci dessous pour calculer le PGCD. Pour rappel voici l'organigramme.</p>
+            <p>Pour cel&agrave; vous allez devoir &eacute;crire le programme ci dessous pour calculer le PGCD. Pour rappel voici l'organigramme.</p>
             <img src="assets/img/algorithm.png" class="img-responsive">
 
 
@@ -450,7 +451,20 @@
 
             <div class="row" style="height: 450px;">
                 <div id="editor"></div>
+                <div>Taille de la police :
+                    <select onchange="changeFontSize(this.value)">
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="15">15</option>
+                        <option value="17">17</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
             </div>
+
+            <p>&nbsp;</p>
 
             <div class="container">
                 <div class="col-xs-3">
@@ -478,7 +492,6 @@
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/javascript");
-
     openPgcd();
 </script>
 </body>
